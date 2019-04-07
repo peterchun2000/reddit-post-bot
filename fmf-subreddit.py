@@ -16,7 +16,7 @@ start_time = time.time()
 client_error = False
 while True:
     try:
-        for post in reddit.subreddit('frugalmalefashion').new():
+        for post in reddit.subreddit('frugalmalefashion').new(limit=5):
             # Sends message if reddit was down and has come back up
             if client_error == True:
                 post_params = { 'bot_id' : 'your_bot_id', 'text': "Reddit is back online" }
