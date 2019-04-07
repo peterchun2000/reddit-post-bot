@@ -13,6 +13,7 @@ reddit = praw.Reddit(user_agent='your agent name',
                      client_id='your client id', client_secret="your client secret")
 # initilizes the time the bot starts running
 start_time = time.time()
+client_error = False
 while True:
     try:
         for post in reddit.subreddit('frugalmalefashion').new():
