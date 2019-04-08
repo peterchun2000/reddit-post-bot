@@ -26,6 +26,7 @@ while True:
             if post.created_utc > start_time:
                 post_params = { 'bot_id' : 'your_bot_id', 'text': post.title +": https://www.reddit.com" + post.permalink }
                 requests.post('https://api.groupme.com/v3/bots/post', params = post_params)
+                start_time = post.created_utc
     # sends an error message when reddit is down
     except praw.exceptions.ClientException as e:
         if client_error == False:
