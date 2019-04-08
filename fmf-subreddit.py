@@ -14,6 +14,7 @@ reddit = praw.Reddit(user_agent='your agent name',
 # initilizes the time the bot starts running
 start_time = time.time()
 client_error = False
+time_list = []
 while True:
     try:
         for post in reddit.subreddit('frugalmalefashion').new(limit=5):
@@ -23,10 +24,10 @@ while True:
                 requests.post('https://api.groupme.com/v3/bots/post', params = post_params)
                 client_error = False
             # prints only the new posts 
-            if post.created_utc > start_time:
+            if post.created_utc > start_time and post.created_utc not in time_list:
                 post_params = { 'bot_id' : 'your_bot_id', 'text': post.title +": https://www.reddit.com" + post.permalink }
                 requests.post('https://api.groupme.com/v3/bots/post', params = post_params)
-                start_time = post.created_utc
+                time_list.append(post.created_utc)
     # sends an error message when reddit is down
     except praw.exceptions.ClientException as e:
         if client_error == False:
