@@ -29,7 +29,7 @@ while True:
                 requests.post('https://api.groupme.com/v3/bots/post', params = post_params)
                 time_list.append(post.created_utc)
     # sends an error message when reddit is down
-    except praw.exceptions.ClientException as e:
+    except:
         if client_error == False:
             post_params = { 'bot_id' : 'your_bot_id', 'text': "client error" }
             requests.post('https://api.groupme.com/v3/bots/post', params = post_params)
